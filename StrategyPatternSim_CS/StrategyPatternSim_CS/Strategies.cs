@@ -1,29 +1,50 @@
-﻿namespace StrategyPatternSim_CS
+﻿using StrategyPatternSim_CS;
+
+namespace StrategyPatternSim_CS
 {
-    internal interface IAttackStrategy
+    internal abstract class IAttackStrategy
     {
-        void Attack();
-    }
+        private int _damage;
+
+        protected IAttackStrategy(int damage)
+        {
+            _damage = damage;
+        }
+
+        public abstract void Attack();
+    }    
 
     internal class Fisticuffs : IAttackStrategy
     {
-        public void Attack()
+        public Fisticuffs() : base(10)
+        {        
+        }
+
+        public override void Attack()
         {
             Console.WriteLine("Punching!");
-        }
+        }        
     }
 
     internal class  SwordSwing : IAttackStrategy
     {
-        public void Attack()
+        public SwordSwing() : base(20)
+        {
+        }       
+
+        public override void Attack()
         {
             Console.WriteLine("Swinging sword!");
         }
     }
 
     internal class Fireball : IAttackStrategy
-    {
-        public void Attack()
+    {        
+        public Fireball() : base(30)
+        {
+        }
+
+        public override void Attack()
         {
             Console.WriteLine("Casting fireball!");
         }
@@ -31,7 +52,11 @@
 
     internal class Heal : IAttackStrategy
     {
-        public void Attack()
+        public Heal() : base(-20)
+        {
+        }
+
+        public override void Attack()
         {
             Console.WriteLine("Healing!");
         }

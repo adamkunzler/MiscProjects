@@ -11,10 +11,19 @@
             var hero = new Character(characterName);
 
             Console.WriteLine("character created: " + characterName);
+            
+            var enemy = new Enemy(15);
 
-            AttackMenu(hero);
+            while(hero.GetHealth() > 0 || enemy.GetHealth() < 0)
+            {
+                AttackMenu(hero);
 
-            hero.Attack();
+                hero.Attack();
+                Console.WriteLine($"{characterName} health: {hero.GetHealth()}");
+
+                hero.Battle(enemy.Attack());
+                Console.WriteLine($"Enemy health: {enemy.GetHealth()}");
+            }            
         }
 
         private static void AttackMenu(Character character)

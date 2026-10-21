@@ -5,14 +5,19 @@ using System.Text;
 namespace StrategyPatternSim_CS
 {
     internal class Character
-    {
+    {        
         private string _name;
+
+        private int _health;
+
+
         private IAttackStrategy _attackStrategy;
 
         public Character(string name)
         {
             _name = name;
-            _attackStrategy = new Fisticuffs(); // Default attack strategy
+            _health = 100;
+            _attackStrategy = new Fisticuffs();
         }
 
         public void SetAttackStrategy(IAttackStrategy attackStrategy)
@@ -24,5 +29,15 @@ namespace StrategyPatternSim_CS
         {
             _attackStrategy.Attack();
         }   
+
+        public void Battle(int damage)
+        {
+            _health -= damage;
+        }
+
+        public int GetHealth()
+        {
+            return _health;
+        }
     }
 }
